@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -28,6 +29,9 @@ public class ChassisSubsystem extends SubsystemBase {
 
     frontLeft.setInverted(true);
     frontRight.setInverted(false);
+
+    rearLeft.setInverted(InvertType.FollowMaster);
+    rearRight.setInverted(InvertType.FollowMaster);
 
     chassis = new DifferentialDrive(frontLeft, frontRight);
 
