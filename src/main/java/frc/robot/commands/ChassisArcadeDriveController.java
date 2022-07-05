@@ -9,13 +9,13 @@ import frc.robot.subsystems.ChassisSubsystem;
 
 public class ChassisArcadeDriveController extends CommandBase {
   private ChassisSubsystem chassis;
-  private final double leftSpeed;
-  private final double rightSpeed;
+  private final double left;
+  private final double right;
 
   public ChassisArcadeDriveController(ChassisSubsystem chassis, double leftSpeed, double rightSpeed) {
     this.chassis = chassis;
-    this.leftSpeed = leftSpeed;
-    this.rightSpeed = rightSpeed;
+    this.left = leftSpeed;
+    this.right = rightSpeed;
 
     addRequirements(chassis);  
   }
@@ -27,7 +27,7 @@ public class ChassisArcadeDriveController extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    chassis.ArcadeDrive(leftSpeed, rightSpeed);
+    chassis.ArcadeDrive(left, right);
   }
 
   // Called once the command ends or is interrupted.
