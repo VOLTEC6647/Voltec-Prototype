@@ -6,10 +6,10 @@ package frc.robot;
 
 public final class Constants {
     public static final class ChassisConstants {
-        public static final int frontLeftID = 0;
         public static final int frontRightID = 1;
-        public static final int rearLeftID = 2;
+        public static final int frontLeftID = 2;
         public static final int rearRightID = 3;
+        public static final int rearLeftID = 4;
     }
 
     public static final class OIConstants {
