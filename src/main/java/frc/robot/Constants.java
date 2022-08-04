@@ -4,16 +4,20 @@
 
 package frc.robot;
 
+/* 
+ * Modify the motor ID constants using the appropiate software (Phoenix Tuner, Rev Client, etc.)
+ */
+
 public final class Constants {
     public static final class ChassisConstants {
-        public static final int frontRightID = 1;
-        public static final int frontLeftID = 2;
-        public static final int rearRightID = 3;
-        public static final int rearLeftID = 4;
+        public static final int frontRight = 1;
+        public static final int frontLeft = 2;
+        public static final int backLeft = 3;
+        public static final int backRight = 4;
     }
 
     public static final class OIConstants {
+        public static double multiplier = 0.8;
         public static final int KDriverControllerPort = 0;
-        public static final int KDriverControllerPort1 = 1;
     }
 }
