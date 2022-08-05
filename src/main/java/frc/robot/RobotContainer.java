@@ -17,13 +17,13 @@ public class RobotContainer {
 
   public RobotContainer() {
     // Tank Drive
-    /* chassis.setDefaultCommand(
-      new RunCommand(() -> chassis.TankDrive(joystick1.getLeftY() * OIConstants.multiplier, joystick1.getRightY() * OIConstants.multiplier), chassis));
+   /*  chassis.setDefaultCommand(
+      new RunCommand(() -> chassis.TankDrive(joystick1.getLeftY(), joystick1.getRightY()), chassis));
     configureButtonBindings(); */
 
     // Arcade Drive
     chassis.setDefaultCommand(
-        new RunCommand(() -> chassis.ArcadeDrive(joystick1.getLeftY() * OIConstants.multiplier, -joystick1.getRightX() * OIConstants.multiplier), chassis));
+        new RunCommand(() -> chassis.ArcadeDrive(joystick1.getLeftY(), joystick1.getRightX()), chassis));
     configureButtonBindings();
   }
 

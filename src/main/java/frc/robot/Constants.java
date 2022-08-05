@@ -10,14 +10,14 @@ package frc.robot;
 
 public final class Constants {
     public static final class ChassisConstants {
-        public static final int frontRight = 1;
-        public static final int frontLeft = 2;
+        public static final int frontRight = 2;
+        public static final int frontLeft = 1;
         public static final int backLeft = 3;
         public static final int backRight = 4;
     }
 
     public static final class OIConstants {
-        public static double multiplier = 0.8;
+        public static double multiplier = 0;
         public static final int KDriverControllerPort = 0;
     }
 }
