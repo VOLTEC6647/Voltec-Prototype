@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ChassisConstants;
 
-
 /*
  * This is the chassis subsystem. 
  * Change the motor type to the used motor in your robot
@@ -22,10 +21,10 @@ import frc.robot.Constants.ChassisConstants;
 public class ChassisSubsystem extends SubsystemBase {
 
   //Create motor objects
-  private static WPI_TalonSRX frontLeft = new WPI_TalonSRX(ChassisConstants.frontLeft);
-  private static WPI_TalonSRX frontRight = new WPI_TalonSRX(ChassisConstants.frontRight); 
-  private static WPI_TalonSRX rearLeft = new WPI_TalonSRX(ChassisConstants.backLeft); 
-  private static WPI_TalonSRX rearRight = new WPI_TalonSRX(ChassisConstants.backRight); 
+  private static CANSparkMax frontLeft = new CANSparkMax(ChassisConstants.frontLeft, MotorType.kBrushed);
+  private static CANSparkMax frontRight = new CANSparkMax(ChassisConstants.frontRight, MotorType.kBrushed); 
+  private static CANSparkMax rearLeft = new CANSparkMax(ChassisConstants.backLeft, MotorType.kBrushed); 
+  private static CANSparkMax rearRight = new CANSparkMax(ChassisConstants.backRight, MotorType.kBrushed); 
 
   private static DifferentialDrive chassis;
   
@@ -44,12 +43,12 @@ public class ChassisSubsystem extends SubsystemBase {
 
     chassis = new DifferentialDrive(frontLeft, frontRight);
 
-    //Uncommment when using WPI types
+    //Uncommment when using WPI types. Do not use for CANSPark Max
     // Set Coast Mode
-    frontLeft.setNeutralMode(NeutralMode.Coast);
-    frontRight.setNeutralMode(NeutralMode.Coast);
-    rearLeft.setNeutralMode(NeutralMode.Coast);
-    rearRight.setNeutralMode(NeutralMode.Coast);
+    // frontLeft.setNeutralMode(NeutralMode.Coast);
+    // frontRight.setNeutralMode(NeutralMode.Coast);
+    // rearLeft.setNeutralMode(NeutralMode.Coast);
+    // rearRight.setNeutralMode(NeutralMode.Coast);
   }
 
   @Override
@@ -57,6 +56,7 @@ public class ChassisSubsystem extends SubsystemBase {
     publishData();
   }
 
+  //Publish to SmartDashboard for debugging
   private void publishData() {
     SmartDashboard.putNumber("LeftSpeed", leftSpeed);
     SmartDashboard.putNumber("RightSpeed", rightSpeed);

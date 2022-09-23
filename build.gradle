@@ -66,6 +66,9 @@ dependencies {
     simulationRelease wpi.sim.enableRelease()
 
     testImplementation 'junit:junit:4.12'
+
+	implementation 'com.github.StuyPulse:StuyLib:v2022.7.3'
+
 }
 
 // Simulation configuration (e.g. environment variables).
@@ -79,6 +82,12 @@ jar {
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+allprojects {
+    repositories {		
+		maven { url 'https://jitpack.io' }
+	}
 }
 
 // Configure jar and deploy tasks
