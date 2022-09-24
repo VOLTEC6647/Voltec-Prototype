@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.stuypulse.stuylib.network.limelight.Limelight;
 
 import edu.wpi.first.wpilibj.Notifier;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.VisionConstats;
 
@@ -51,7 +52,10 @@ public class LimelightSubsystem extends SubsystemBase {
           var distanceAdjust = kpDistance * ty;
 
           //Send adjustments
-          chassis.TankDrive(steeringAdjust + distanceAdjust, -steeringAdjust + distanceAdjust);
+          SmartDashboard.putNumber("Steering:", steeringAdjust);
+          SmartDashboard.putNumber("Distance:", distanceAdjust);
+
+          chassis.TankDrive((steeringAdjust + distanceAdjust) * 0.5, (-steeringAdjust + distanceAdjust) * 0.5);
         }
       }
     });
