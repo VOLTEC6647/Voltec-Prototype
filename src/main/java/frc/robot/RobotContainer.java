@@ -71,8 +71,8 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(joystick1, Button.kRightBumper.value)
-                .whileHeld(new StartEndCommand(() -> limelight.toggleAim(), () -> limelight.toggleAim(), limelight));
+        /* new JoystickButton(joystick1, Button.kRightBumper.value)
+                .whileHeld(new StartEndCommand(() -> limelight.toggleAim(), () -> limelight.toggleAim(), limelight)); */
     }
 
     /**
