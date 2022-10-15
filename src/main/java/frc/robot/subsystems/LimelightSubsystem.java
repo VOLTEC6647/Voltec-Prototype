@@ -55,7 +55,7 @@ public class LimelightSubsystem extends SubsystemBase {
           SmartDashboard.putNumber("Steering:", steeringAdjust);
           SmartDashboard.putNumber("Distance:", distanceAdjust);
 
-          chassis.TankDrive((steeringAdjust + distanceAdjust) * 0.5, (-steeringAdjust + distanceAdjust) * 0.5);
+          chassis.tankDrive((steeringAdjust + distanceAdjust) * 0.5, (-steeringAdjust + distanceAdjust) * 0.5);
         }
       }
     });
