@@ -10,14 +10,21 @@ package frc.robot;
 
 public final class Constants {
     public static final class ChassisConstants {
-        public static final int frontRight = 2;
-        public static final int frontLeft = 1;
-        public static final int backLeft = 3;
-        public static final int backRight = 4;
+        public static final int frontRight = 6;
+        public static final int frontLeft = 9; // 5
+        public static final int backLeft = 8; //8
+        public static final int backRight = 5; //9
     }
 
     public static final class OIConstants {
         public static double multiplier = 0;
         public static final int KDriverControllerPort = 0;
+    }
+
+    public static final class VisionConstats{
+        public static final double kpAim = -0.03; //How hard to turn 
+        public static final double kpDistance = -0.04; //How hard to drive fwd
+        public static final double min_aim_command = 0.01; //Minimum command to rotate
+        public static final double steeringAdjust = 0.0; 
     }
 }
