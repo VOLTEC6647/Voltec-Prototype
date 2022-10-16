@@ -6,7 +6,6 @@ package frc.robot;
 
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.ChassisSubsystem;
-import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.utils.XboxControllerUpgrade;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,7 +14,6 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 
 public class RobotContainer {
         private final ChassisSubsystem chassis = new ChassisSubsystem();
-        private final LimelightSubsystem limelight = new LimelightSubsystem();
 
         public final XboxControllerUpgrade joystick1 = new XboxControllerUpgrade(OIConstants.KDriverControllerPort,
                         0.2);
@@ -56,14 +54,6 @@ public class RobotContainer {
                 /* Tank Drive */
                 chassis.setDefaultCommand(chooserCommand());
                 configureButtonBindings();
-
-                /*
-                 * chassis.setDefaultCommand(
-                 * new RunCommand(() -> chassis.ArcadeDrive(joystick1.getLeftY(),
-                 * joystick1.getRightX()), chassis));
-                 * configureButtonBindings();
-                 */
-
         }
 
         private void configureButtonBindings() {
