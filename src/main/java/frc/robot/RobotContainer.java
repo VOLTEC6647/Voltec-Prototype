@@ -54,9 +54,7 @@ public class RobotContainer {
                 SmartDashboard.putData(chooser);
 
                 /* Tank Drive */
-                chassis.setDefaultCommand(
-                                new RunCommand(() -> chassis.tankDrive(joystick1.getLeftY(), joystick1.getRightY()),
-                                                chassis));
+                chassis.setDefaultCommand(chooserCommand());
                 configureButtonBindings();
 
                 /*
@@ -73,5 +71,9 @@ public class RobotContainer {
 
         public Command getAutonomousCommand() {
                 return null;
+        }
+
+        public Command chooserCommand() {
+                return chooser.getSelected();
         }
 }
