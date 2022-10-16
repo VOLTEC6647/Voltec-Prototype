@@ -43,12 +43,12 @@ public class ChassisSubsystem extends SubsystemBase {
 
     chassis = new DifferentialDrive(frontLeft, frontRight);
 
-    // Uncommment when using WPI types. Do not use for CANSPark Max
-    // Set Coast Mode
-    // frontLeft.setNeutralMode(NeutralMode.Coast);
-    // frontRight.setNeutralMode(NeutralMode.Coast);
-    // rearLeft.setNeutralMode(NeutralMode.Coast);
-    // rearRight.setNeutralMode(NeutralMode.Coast);
+    /* Uncommment when using WPI types. Do not use for CANSPark Max */
+    /* Set Coast Mode */
+    /* frontLeft.setNeutralMode(NeutralMode.Coast);
+    frontRight.setNeutralMode(NeutralMode.Coast);
+    rearLeft.setNeutralMode(NeutralMode.Coast);
+    rearRight.setNeutralMode(NeutralMode.Coast) */;
   }
 
   @Override
