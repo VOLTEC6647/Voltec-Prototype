@@ -48,11 +48,10 @@ public class RobotContainer {
                 chooser.addOption("Arcade Drive IK", arcadeDriveIKCommand);
                 chooser.addOption("Curvature Drive", curvatureDriveCommand);
                 chooser.addOption("Curvature Drive IK", curvatureDriveIKCommand);
-
                 SmartDashboard.putData(chooser);
 
-                /* Tank Drive */
                 chassis.setDefaultCommand(chooserCommand());
+
                 configureButtonBindings();
         }
 
