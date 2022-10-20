@@ -4,18 +4,19 @@
 
 package frc.robot;
 
-import frc.robot.Constants.OIConstants;
-import frc.robot.subsystems.ChassisSubsystem;
-import frc.robot.utils.XboxControllerUpgrade;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 
-public class RobotContainer {
-        private final ChassisSubsystem chassis = new ChassisSubsystem();
+import frc.robot.Constants.OIConstants;
+import frc.robot.subsystems.ChassisSubsystem;
+import frc.robot.utils.XboxControllerUpgrade;
 
-        public final XboxControllerUpgrade joystick1 = new XboxControllerUpgrade(OIConstants.KDriverControllerPort,
+public class RobotContainer {
+        public final ChassisSubsystem chassis = new ChassisSubsystem();
+
+        private final XboxControllerUpgrade joystick1 = new XboxControllerUpgrade(OIConstants.KDriverControllerPort,
                         0.2);
 
         SendableChooser<Command> chooser = new SendableChooser<>();
@@ -40,6 +41,12 @@ public class RobotContainer {
         private final Command curvatureDriveIKCommand = new RunCommand(
                         () -> chassis.curvatureDriveIK(joystick1.getLeftY(), joystick1.getRightX()), chassis);
 
+        private final Command triggerDriveCommand = new RunCommand(
+                        () -> chassis.arcadeDrive(
+                                        (joystick1.getRightTriggerAxis() - joystick1.getLeftTriggerAxis()) * -1,
+                                        joystick1.getLeftX() * -1),
+                        chassis);
+
         public RobotContainer() {
 
                 chooser.setDefaultOption("Tank Drive", tankDriveCommand);
@@ -48,6 +55,7 @@ public class RobotContainer {
                 chooser.addOption("Arcade Drive IK", arcadeDriveIKCommand);
                 chooser.addOption("Curvature Drive", curvatureDriveCommand);
                 chooser.addOption("Curvature Drive IK", curvatureDriveIKCommand);
+                chooser.addOption("Trigger Drive", triggerDriveCommand);
                 SmartDashboard.putData(chooser);
 
                 chassis.setDefaultCommand(chooserCommand());
@@ -56,6 +64,7 @@ public class RobotContainer {
         }
 
         private void configureButtonBindings() {
+
         }
 
         public Command getAutonomousCommand() {
