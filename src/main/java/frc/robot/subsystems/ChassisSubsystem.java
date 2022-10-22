@@ -7,9 +7,11 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ChassisConstants;
@@ -26,34 +28,48 @@ public class ChassisSubsystem extends SubsystemBase {
   private static CANSparkMax rearLeft = new CANSparkMax(ChassisConstants.backLeft, MotorType.kBrushless);
   private static CANSparkMax rearRight = new CANSparkMax(ChassisConstants.backRight, MotorType.kBrushless);
 
+  private static MotorControllerGroup leftControllerGroup = new MotorControllerGroup(frontLeft, rearLeft);
+  private static MotorControllerGroup rightControllerGroup = new MotorControllerGroup(frontRight, rearRight);
+
   private static DifferentialDrive chassis;
 
   private double leftSpeed, rightSpeed;
 
   // Constructor method, is called when object is created
   public ChassisSubsystem() {
-    rearLeft.follow(frontLeft);
-    rearRight.follow(frontRight);
+    frontLeft.restoreFactoryDefaults();
+    frontRight.restoreFactoryDefaults();
 
-    frontLeft.setInverted(true);
-    frontRight.setInverted(false);
+    rearLeft.restoreFactoryDefaults();
+    rearRight.restoreFactoryDefaults();
 
-    rearLeft.setInverted(true);
-    rearRight.setInverted(false);
+    setMotorsIdleMode(IdleMode.kCoast);
 
-    chassis = new DifferentialDrive(frontLeft, frontRight);
+    leftControllerGroup.setInverted(true);
+
+    chassis = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
 
     /* Uncommment when using WPI types. Do not use for CANSPark Max */
     /* Set Coast Mode */
-    /* frontLeft.setNeutralMode(NeutralMode.Coast);
-    frontRight.setNeutralMode(NeutralMode.Coast);
-    rearLeft.setNeutralMode(NeutralMode.Coast);
-    rearRight.setNeutralMode(NeutralMode.Coast) */;
+    /*
+     * frontLeft.setNeutralMode(NeutralMode.Coast);
+     * frontRight.setNeutralMode(NeutralMode.Coast);
+     * rearLeft.setNeutralMode(NeutralMode.Coast);
+     * rearRight.setNeutralMode(NeutralMode.Coast)
+     */;
   }
 
   @Override
   public void periodic() {
     publishData();
+  }
+
+  /* Set motor idle mode */
+  private void setMotorsIdleMode(IdleMode idleMode) {
+    frontLeft.setIdleMode(idleMode);
+    frontRight.setIdleMode(idleMode);
+    rearLeft.setIdleMode(idleMode);
+    rearRight.setIdleMode(idleMode);
   }
 
   // Publish to SmartDashboard for debugging
@@ -62,6 +78,7 @@ public class ChassisSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("RightSpeed", rightSpeed);
   }
 
+  /* Different drive modes */
   public void tankDrive(double leftSpeed, double rightSpeed) {
     this.leftSpeed = leftSpeed;
     this.rightSpeed = rightSpeed;
@@ -79,19 +96,20 @@ public class ChassisSubsystem extends SubsystemBase {
     this.rightSpeed = rightSpeed;
     chassis.curvatureDrive(leftSpeed, rightSpeed, true);
   }
-  public void curvatureDriveIK(double leftSpeed, double rightSpeed){
+
+  public void curvatureDriveIK(double leftSpeed, double rightSpeed) {
     this.leftSpeed = leftSpeed;
     this.rightSpeed = rightSpeed;
     DifferentialDrive.curvatureDriveIK(leftSpeed, rightSpeed, true);
   }
 
-  public void arcadeDriveIK(double leftSpeed, double rightSpeed){
+  public void arcadeDriveIK(double leftSpeed, double rightSpeed) {
     this.leftSpeed = leftSpeed;
     this.rightSpeed = rightSpeed;
     DifferentialDrive.arcadeDriveIK(leftSpeed, rightSpeed, true);
   }
 
-  public void tankDriveIK(double leftSpeed, double rightSpeed){
+  public void tankDriveIK(double leftSpeed, double rightSpeed) {
     this.leftSpeed = leftSpeed;
     this.rightSpeed = rightSpeed;
     DifferentialDrive.tankDriveIK(leftSpeed, rightSpeed, true);

@@ -19,27 +19,27 @@ public class RobotContainer {
         private final XboxControllerUpgrade joystick1 = new XboxControllerUpgrade(OIConstants.KDriverControllerPort,
                         0.2);
 
-        SendableChooser<Command> chooser = new SendableChooser<>();
+        SendableChooser<Command> driveChooser = new SendableChooser<>();
 
         private final Command tankDriveCommand = new RunCommand(
                         () -> chassis.tankDrive(joystick1.getLeftY(), joystick1.getRightY()),
                         chassis);
 
-        private final Command tankDriveIKCommand = new RunCommand(
+        /* private final Command tankDriveIKCommand = new RunCommand(
                         () -> chassis.tankDriveIK(joystick1.getLeftY(), joystick1.getRightY()),
-                        chassis);
+                        chassis); */
 
         private final Command arcadeDriveCommand = new RunCommand(() -> chassis.arcadeDrive(joystick1.getLeftY(),
                         joystick1.getRightX()), chassis);
 
-        private final Command arcadeDriveIKCommand = new RunCommand(() -> chassis.arcadeDriveIK(joystick1.getLeftY(),
-                        joystick1.getRightX()), chassis);
+        /* private final Command arcadeDriveIKCommand = new RunCommand(() -> chassis.arcadeDriveIK(joystick1.getLeftY(),
+                        joystick1.getRightX()), chassis); */
 
         private final Command curvatureDriveCommand = new RunCommand(
                         () -> chassis.curvatureDrive(joystick1.getLeftY(), joystick1.getRightX()), chassis);
 
-        private final Command curvatureDriveIKCommand = new RunCommand(
-                        () -> chassis.curvatureDriveIK(joystick1.getLeftY(), joystick1.getRightX()), chassis);
+        /* private final Command curvatureDriveIKCommand = new RunCommand(
+                        () -> chassis.curvatureDriveIK(joystick1.getLeftY(), joystick1.getRightX()), chassis); */
 
         private final Command triggerDriveCommand = new RunCommand(
                         () -> chassis.arcadeDrive(
@@ -49,29 +49,28 @@ public class RobotContainer {
 
         public RobotContainer() {
 
-                chooser.setDefaultOption("Tank Drive", tankDriveCommand);
-                chooser.addOption("Tank Drive IK", tankDriveIKCommand);
-                chooser.addOption("Arcade Drive", arcadeDriveCommand);
-                chooser.addOption("Arcade Drive IK", arcadeDriveIKCommand);
-                chooser.addOption("Curvature Drive", curvatureDriveCommand);
-                chooser.addOption("Curvature Drive IK", curvatureDriveIKCommand);
-                chooser.addOption("Trigger Drive", triggerDriveCommand);
-                SmartDashboard.putData(chooser);
+                driveChooser.setDefaultOption("Tank Drive", tankDriveCommand);
+/*                 chooser.addOption("Tank Drive IK", tankDriveIKCommand);
+ */                driveChooser.addOption("Arcade Drive", arcadeDriveCommand);
+/*                 chooser.addOption("Arcade Drive IK", arcadeDriveIKCommand);
+ */                driveChooser.addOption("Curvature Drive", curvatureDriveCommand);
+/*                 chooser.addOption("Curvature Drive IK", curvatureDriveIKCommand);
+ */                driveChooser.addOption("Trigger Drive", triggerDriveCommand);
+                SmartDashboard.putData(driveChooser);
 
                 chassis.setDefaultCommand(chooserCommand());
 
                 configureButtonBindings();
         }
 
-        private void configureButtonBindings() {
-
-        }
+        private void configureButtonBindings() {}
 
         public Command getAutonomousCommand() {
                 return null;
         }
 
+        /* Retunrs driveChooser selected drive command */
         public Command chooserCommand() {
-                return chooser.getSelected();
+                return driveChooser.getSelected();
         }
 }
