@@ -30,7 +30,7 @@ public class RobotContainer {
                         chassis); */
 
         private final Command arcadeDriveCommand = new RunCommand(() -> chassis.arcadeDrive(joystick1.getLeftY(),
-                        joystick1.getRightX()), chassis);
+                        -joystick1.getRightX()), chassis);
 
         /* private final Command arcadeDriveIKCommand = new RunCommand(() -> chassis.arcadeDriveIK(joystick1.getLeftY(),
                         joystick1.getRightX()), chassis); */

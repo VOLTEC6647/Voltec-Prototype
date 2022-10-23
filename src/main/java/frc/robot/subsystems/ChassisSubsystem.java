@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -21,6 +22,11 @@ import frc.robot.Constants.ChassisConstants;
  * Change the motor type to the used motor in your robot
  */
 public class ChassisSubsystem extends SubsystemBase {
+
+ /*  private static final WPI_VictorSPX fRight = new WPI_VictorSPX(1);
+  private static final WPI_VictorSPX fLeft = new WPI_VictorSPX(2);
+  private static final WPI_VictorSPX bRight = new WPI_VictorSPX(3);
+  private static final WPI_VictorSPX bLeft = new WPI_VictorSPX(4); */
 
   // Create motor objects
   private static CANSparkMax frontLeft = new CANSparkMax(ChassisConstants.frontLeft, MotorType.kBrushless);
