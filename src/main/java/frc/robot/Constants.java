@@ -20,11 +20,4 @@ public final class Constants {
         public static double multiplier = 0;
         public static final int KDriverControllerPort = 0;
     }
-
-    public static final class VisionConstats{
-        public static final double kpAim = -0.03; //How hard to turn 
-        public static final double kpDistance = -0.04; //How hard to drive fwd
-        public static final double min_aim_command = 0.01; //Minimum command to rotate
-        public static final double steeringAdjust = 0.0; 
-    }
 }
