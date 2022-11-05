@@ -28,31 +28,37 @@ public class ChassisSubsystem extends SubsystemBase {
   private static final WPI_VictorSPX bRight = new WPI_VictorSPX(3);
   private static final WPI_VictorSPX bLeft = new WPI_VictorSPX(4); */
 
-  // Create motor objects
+  // Initialize drivetrain motor objects
   private static CANSparkMax frontLeft = new CANSparkMax(ChassisConstants.frontLeft, MotorType.kBrushless);
   private static CANSparkMax frontRight = new CANSparkMax(ChassisConstants.frontRight, MotorType.kBrushless);
   private static CANSparkMax rearLeft = new CANSparkMax(ChassisConstants.backLeft, MotorType.kBrushless);
   private static CANSparkMax rearRight = new CANSparkMax(ChassisConstants.backRight, MotorType.kBrushless);
 
+  // This is object groups several motor's behaviour under one object
   private static MotorControllerGroup leftControllerGroup = new MotorControllerGroup(frontLeft, rearLeft);
   private static MotorControllerGroup rightControllerGroup = new MotorControllerGroup(frontRight, rearRight);
 
+  // Type of drive chose, i.e. differential drive, mecanum drive, swerve drive, etc. 
   private static DifferentialDrive chassis;
 
   private double leftSpeed, rightSpeed;
 
   // Constructor method, is called when object is created
   public ChassisSubsystem() {
+    //Restore all motors to factory defaults
     frontLeft.restoreFactoryDefaults();
     frontRight.restoreFactoryDefaults();
 
     rearLeft.restoreFactoryDefaults();
     rearRight.restoreFactoryDefaults();
 
+    // Sets all motors to coast
     setMotorsIdleMode(IdleMode.kCoast);
 
+    //Inverts one side of the motors to match directions
     leftControllerGroup.setInverted(true);
 
+    //Declares differential drive, while referencing both motorController groups
     chassis = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
 
     /* Uncommment when using WPI types. Do not use for CANSPark Max */
@@ -101,23 +107,5 @@ public class ChassisSubsystem extends SubsystemBase {
     this.leftSpeed = leftSpeed;
     this.rightSpeed = rightSpeed;
     chassis.curvatureDrive(leftSpeed, rightSpeed, true);
-  }
-
-  public void curvatureDriveIK(double leftSpeed, double rightSpeed) {
-    this.leftSpeed = leftSpeed;
-    this.rightSpeed = rightSpeed;
-    DifferentialDrive.curvatureDriveIK(leftSpeed, rightSpeed, true);
-  }
-
-  public void arcadeDriveIK(double leftSpeed, double rightSpeed) {
-    this.leftSpeed = leftSpeed;
-    this.rightSpeed = rightSpeed;
-    DifferentialDrive.arcadeDriveIK(leftSpeed, rightSpeed, true);
-  }
-
-  public void tankDriveIK(double leftSpeed, double rightSpeed) {
-    this.leftSpeed = leftSpeed;
-    this.rightSpeed = rightSpeed;
-    DifferentialDrive.tankDriveIK(leftSpeed, rightSpeed, true);
   }
 }

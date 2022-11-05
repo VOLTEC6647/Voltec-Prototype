@@ -25,21 +25,11 @@ public class RobotContainer {
                         () -> chassis.tankDrive(joystick1.getLeftY(), joystick1.getRightY()),
                         chassis);
 
-        /* private final Command tankDriveIKCommand = new RunCommand(
-                        () -> chassis.tankDriveIK(joystick1.getLeftY(), joystick1.getRightY()),
-                        chassis); */
-
         private final Command arcadeDriveCommand = new RunCommand(() -> chassis.arcadeDrive(joystick1.getLeftY(),
                         -joystick1.getRightX()), chassis);
 
-        /* private final Command arcadeDriveIKCommand = new RunCommand(() -> chassis.arcadeDriveIK(joystick1.getLeftY(),
-                        joystick1.getRightX()), chassis); */
-
         private final Command curvatureDriveCommand = new RunCommand(
                         () -> chassis.curvatureDrive(joystick1.getLeftY(), joystick1.getRightX()), chassis);
-
-        /* private final Command curvatureDriveIKCommand = new RunCommand(
-                        () -> chassis.curvatureDriveIK(joystick1.getLeftY(), joystick1.getRightX()), chassis); */
 
         private final Command triggerDriveCommand = new RunCommand(
                         () -> chassis.arcadeDrive(
@@ -49,13 +39,11 @@ public class RobotContainer {
 
         public RobotContainer() {
 
+                //Adds options to choose different drive modes on the run
                 driveChooser.setDefaultOption("Tank Drive", tankDriveCommand);
-/*                 chooser.addOption("Tank Drive IK", tankDriveIKCommand);
- */                driveChooser.addOption("Arcade Drive", arcadeDriveCommand);
-/*                 chooser.addOption("Arcade Drive IK", arcadeDriveIKCommand);
- */                driveChooser.addOption("Curvature Drive", curvatureDriveCommand);
-/*                 chooser.addOption("Curvature Drive IK", curvatureDriveIKCommand);
- */                driveChooser.addOption("Trigger Drive", triggerDriveCommand);
+                driveChooser.addOption("Arcade Drive", arcadeDriveCommand);
+                driveChooser.addOption("Curvature Drive", curvatureDriveCommand);
+                driveChooser.addOption("Trigger Drive", triggerDriveCommand);
                 SmartDashboard.putData(driveChooser);
 
                 chassis.setDefaultCommand(chooserCommand());
